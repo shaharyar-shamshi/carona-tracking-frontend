@@ -6,6 +6,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-
+## Contributors
+<a href="https://github.com/shaharyar-shamshi/carona_tracking_frontend/graphs/contributors">
+  <img src="https://contributors-img.web.app/image?repo=shaharyar-shamshi/carona_tracking_frontend" />
+</a>
 
 ![Alt text](Screenshot.png?raw=true "Title")
