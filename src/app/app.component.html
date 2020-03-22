@@ -29,5 +29,11 @@
   </div>
   <div echarts [options]="RecoveryChart" class="recovery-chart"> </div>
   </div>
+  <div class = "piechart">
+    <canvas class = "basechart" baseChart
+            [data]="pieChartData"
+            [labels]="pieChartLabels"
+            [chartType]="pieChartType"></canvas>
+  </div>
 </div>
   

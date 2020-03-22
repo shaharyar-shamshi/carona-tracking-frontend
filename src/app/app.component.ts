@@ -14,6 +14,12 @@ export class AppComponent  implements OnInit, AfterViewInit{
   deathlist: any;
   chartOption: EChartOption;
   RecoveryChart: EChartOption
+  totalConfirmed = 0;
+  totalRecovered = 0;
+  totalDeath = 0;
+  public pieChartLabels = ['Under Treatment', 'Total Recovered', 'Total Death'];
+  public pieChartData = [0,0,0];
+  public pieChartType = 'pie';
   constructor(public appService:AppService) {
 
   }
@@ -40,7 +46,13 @@ export class AppComponent  implements OnInit, AfterViewInit{
             this.data.sort(function(a, b) {
               return b.totalConfirmed - a.totalConfirmed;
           });
-            console.log(data)
+          for (let value of this.data) {
+              this.totalConfirmed = this.totalConfirmed + value.totalConfirmed;
+              this.totalDeath = this.totalDeath + value.totalDeaths;
+              this.totalRecovered = this.totalRecovered + value.totalRecovered
+          }
+          this.pieChartData = [this.totalConfirmed - this.totalRecovered - this.totalDeath, this.totalRecovered, this.totalDeath]
+          this.pieChartData = [... this.pieChartData]
           }
        });
   })
