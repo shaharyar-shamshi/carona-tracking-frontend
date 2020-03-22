@@ -1,37 +1,31 @@
-$item-width: 40%; // Now we can use percentages!
-$item-separation: 0px; // This now is set with Js
-$viewer-distance: 500px;
-
-.carousel {
-	padding: 20px;
-
-	perspective: $viewer-distance;
-	overflow: hidden;
-	
+.mainDiv {
+	display:flex;
+	flex-wrap:wrap;
+	justify-content: center;
+	border-bottom: 1px solid
+}
+.dataDiv {
 	display: flex;
+    min-width: 29%;
+}
+.dataDetailDiv {
+	display: flex;
+	width: 80%;
+	justify-content: center;
 	flex-direction: column;
 	align-items: center;
-	> * {
-		flex: 0 0 auto;
-	}
-	
-	figure {
-		margin: 0;
-		
-		width: $item-width;
-		transform-style: preserve-3d;
-		transition: transform 0.5s;
-		
-		img {
-			width: 100%;
-			box-sizing: border-box;
-			padding: 0 $item-separation / 2;
-			&:not(:first-of-type) {
-				position: absolute;
-				left: 0;
-				top: 0;
-			}
-		}
-	}
-	
+	border: 1px solid rgba(0,0,0,0.2);
+	margin: 10px;
+	background-color: cadetblue;
 }
+.dataelement {
+	margin-top: 5px;
+}
+.demo-chart {
+	height: 400px;
+  }
+  .graphHeading {
+	  display: flex;
+	  justify-content: center;
+    margin-top: 50px
+  }

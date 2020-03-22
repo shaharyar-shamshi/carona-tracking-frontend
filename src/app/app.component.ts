@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { EChartOption } from 'echarts';
 import { AppService } from './services/app.service'
 @Component({
   selector: 'app-root',
@@ -6,94 +7,101 @@ import { AppService } from './services/app.service'
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent  implements OnInit, AfterViewInit{
-  
-  newList: any = [];
-  carousel: any;
-  figure: any;
-  numImages: any;
-  theta: number;
-  currImage: number;
-  images: any;
-  gap: any;
-  bfc: boolean;
-  
 
+  public data = new Array();
+  confirmedList: any;
+  recoverylist: any;
+  deathlist: any;
+  chartOption: EChartOption;
+  RecoveryChart: EChartOption
   constructor(public appService:AppService) {
 
   }
 
   ngAfterViewInit(): void {
-    setTimeout(()=> {
-      this.initiate3DCorosoul();
-    }, 5000);
-    setInterval(()=> {
-      this.onClick(true);
-    }, 5000);
+    
   }
 
   ngOnInit(): void {
-    this.getImage();
+    this.getData();
+    this.getHistoricalData()
   }
-  getImage() {
-    this.appService.getImage().subscribe(
+  getData() {
+    this.appService.getIndiaData().subscribe(
       (data, err) => {
       if (err) {
         console.log("Some error occured");
         return;
       }
        data.forEach(element => {
-          const imageObj = {
-            src: element.urls.small
+          if (element.id === 'india') {
+            this.data = element.areas
+            //this.data = [...data]
+            this.data.sort(function(a, b) {
+              return b.totalConfirmed - a.totalConfirmed;
+          });
+            console.log(data)
           }
-         this.newList.push(imageObj);
        });
   })
 }
-initiate3DCorosoul() {
-  this.carousel = document.querySelector('.carousel');
-  this.figure = this.carousel.querySelector('figure');
-  this.numImages = this.newList.length;
-  this.theta =  (2 * Math.PI) / this.numImages;
-  this.currImage = 0;
-  this.initiateCorosoul(this.carousel);
+getHistoricalData() {
+  this.appService.getHistoricalData().subscribe(
+    (data, err) => {
+      if (err) {
+        console.log("some error occurred")
+        return
+      }
+      let confirmedList = data.locations[0].timelines.confirmed.timeline
+      this.confirmedList = confirmedList
+      this.deathlist = data.locations[0].timelines.deaths.timeline
+      this.recoverylist = data.locations[0].timelines.recovered.timeline
+      this.setconfirmChart()
+    }
+  )
 }
-initiateCorosoul(root) {
-let img = this.figure.children;
-this.images = [].slice.call(img);
-  this.gap = root.dataset.gap || 0;
-  this.bfc = 'bfc' in root.dataset;
-  this.setupCarousel(this.images.length, 1000);
-}
-setupCarousel(n, s) {
-  let	apothem = s / (2 * Math.tan(Math.PI / n));
-  
-  this.figure.style.transformOrigin = `50% 50% ${- apothem}px`;
-  
-  for (let i = 0; i < n; i++)
-    this.images[i].style.padding = `${this.gap}px`;
-  for (let i = 1; i < n; i++) {
-    this.images[i].style.transformOrigin = `50% 50% ${- apothem}px`;
-    this.images[i].style.transform = `rotateY(${i * this.theta}rad)`;
+setconfirmChart() {
+  let horizontalAxisTotalCases = []
+  let verticalAxisTotalCases = []
+  let horizontalAxisRecoveryCases = []
+  let verticalAxisRecoveryCases = []
+  for ( let data in this.confirmedList) {
+    let date = new Date(data)
+    horizontalAxisTotalCases.push(date.getUTCDate() + "/" + (Number(date.getMonth()) + 1))
+    verticalAxisTotalCases.push(this.confirmedList[data])
   }
-  if (this.bfc)
-    for (let i = 0; i < n; i++)
-       this.images[i].style.backfaceVisibility = 'hidden';
-  
-  this.rotateCarousel(this.currImage);
-}
-rotateCarousel(imageIndex) {
-  this.figure.style.transform = `rotateY(${imageIndex * -this.theta}rad)`;
-}
-
-
-onClick(value) {
-  if(value) {
-    this.currImage++;
-  } else {
-    this.currImage--;
+  for ( let data in this.recoverylist) {
+    let date = new Date(data)
+    horizontalAxisRecoveryCases.push(date.getUTCDate() + "/" + (Number(date.getMonth()) + 1))
+    verticalAxisRecoveryCases.push(this.recoverylist[data])
   }
-  this.rotateCarousel(this.currImage);
-}
+  
 
-  title = 'corosoul';
+  this.chartOption = {
+    xAxis: {
+      type: 'category',
+      data: horizontalAxisTotalCases
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: [{
+      data: verticalAxisTotalCases,
+      type: 'line'
+    }]
+  }
+  this.RecoveryChart = {
+    xAxis: {
+      type: 'category',
+      data: horizontalAxisRecoveryCases
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: [{
+      data: verticalAxisRecoveryCases,
+      type: 'line'
+    }]
+  }
+  }
 }

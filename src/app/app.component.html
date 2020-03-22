@@ -1,8 +1,33 @@
 <div>
-  <div class="carousel" #carosoul>
-    <figure >
-      <img class = "corosoulImage" *ngFor="let newData of newList" [src]="newData.src" alt="" />
-    </figure>
+<div class = "mainDiv">
+<div class = "dataDiv" *ngFor= "let dataelement of data">
+  <div class = "dataDetailDiv">
+  <div class = "displayName dataelement">
+  {{dataelement['displayName']}}
+  </div>
+  <div class="totalConfirmed dataelement">
+    Total Confirmed: {{dataelement['totalConfirmed']}}
+  </div>
+  <div class="totalRecovered dataelement">
+    Total Recovered: {{dataelement['totalRecovered']}}
+  </div>
+  <div class="totalDeath dataelement">
+    Total Deaths: {{dataelement['totalDeaths']}}
+  </div>
+  </div>
 </div>
-
 </div>
+<div>
+<div class = "graphHeading">
+  Per Day Cases of last month
+</div>
+<div echarts [options]="chartOption" class="demo-chart"> </div>
+</div>
+<div>
+  <div class = "graphHeading">
+    Per Day Recovery of last month
+  </div>
+  <div echarts [options]="RecoveryChart" class="recovery-chart"> </div>
+  </div>
+</div>
+  
