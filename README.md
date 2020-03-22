@@ -11,4 +11,6 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
   <img src="https://contributors-img.web.app/image?repo=shaharyar-shamshi/carona_tracking_frontend" />
 </a>
 
+Made with [contributors-img](https://contributors-img.web.app).
+
 ![Alt text](Screenshot.png?raw=true "Title")
