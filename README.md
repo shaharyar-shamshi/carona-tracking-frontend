@@ -12,5 +12,3 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 </a>
 
 Made with [contributors-img](https://contributors-img.web.app).
-
-![Alt text](Screenshot.png?raw=true "Title")
