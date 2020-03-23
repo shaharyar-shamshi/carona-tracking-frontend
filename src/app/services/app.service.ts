@@ -10,11 +10,11 @@ export class AppService {
   getIndiaData(): any {                                                                                             
     
     const url = `${environment.url}`;
-    return this.http.get('http://localhost:3000/getData');
+    return this.http.get('https://mysterious-sands-32124.herokuapp.com/getData');
   }
   getHistoricalData(): any {                                                                                             
     
     const url = `${environment.url}`;
-    return this.http.get('http://localhost:3000/getHistoricalData');
+    return this.http.get('https://mysterious-sands-32124.herokuapp.com/getHistoricalData');
   }
 }
