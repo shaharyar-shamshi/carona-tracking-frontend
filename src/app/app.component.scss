@@ -6,7 +6,8 @@
 }
 .dataDiv {
 	display: flex;
-    min-width: 29%;
+	min-width: 29%;
+	justify-content: center;
 }
 .dataDetailDiv {
 	display: flex;
@@ -37,4 +38,9 @@
 	  height:500px !important;
 	  width: auto !important;
 	  display: flex !important;
+  }
+  @media screen and (max-width: 768px) {
+	  .mainDiv {
+	  flex-direction: column !important;
+	  }
   }
