@@ -124,6 +124,7 @@ setconfirmChart() {
          console.log(err)
        } else {
          this.newsArticle = data
+         this.newsArticle.shift()
        }
     })
   }
