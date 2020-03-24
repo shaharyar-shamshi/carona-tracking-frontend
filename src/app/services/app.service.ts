@@ -12,4 +12,7 @@ export class AppService {
   getHistoricalData(): any {                                                                                             
     return this.http.get('https://mysterious-sands-32124.herokuapp.com/getHistoricalData');
   }
+  getNewsarticle(): any { 
+    return this.http.get('https://mysterious-sands-32124.herokuapp.com/getNews')
+  }
 }

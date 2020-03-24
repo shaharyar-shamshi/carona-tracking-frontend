@@ -1,39 +1,50 @@
-<div>
-<div class = "mainDiv">
-<div class = "dataDiv" *ngFor= "let dataelement of data">
-  <div class = "dataDetailDiv">
-  <div class = "displayName dataelement">
-  {{dataelement['displayName']}}
+<div class = "container">
+<div class = "datasection">
+  <div class="mainDiv">
+    <div class="dataDiv" *ngFor="let dataelement of data">
+      <div class="dataDetailDiv">
+        <div class="displayName dataelement">
+          {{dataelement['displayName']}}
+        </div>
+        <div class="totalConfirmed dataelement">
+          Total Confirmed: {{dataelement['totalConfirmed']}}
+        </div>
+        <div class="totalRecovered dataelement">
+          Total Recovered: {{dataelement['totalRecovered']}}
+        </div>
+        <div class="totalDeath dataelement">
+          Total Deaths: {{dataelement['totalDeaths']}}
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="totalConfirmed dataelement">
-    Total Confirmed: {{dataelement['totalConfirmed']}}
+  <div>
+    <div class="graphHeading">
+      Per Day Cases of last month
+    </div>
+    <div echarts [options]="chartOption" class="demo-chart"> </div>
   </div>
-  <div class="totalRecovered dataelement">
-    Total Recovered: {{dataelement['totalRecovered']}}
+  <div>
+    <div class="graphHeading">
+      Per Day Recovery of last month
+    </div>
+    <div echarts [options]="RecoveryChart" class="recovery-chart"> </div>
   </div>
-  <div class="totalDeath dataelement">
-    Total Deaths: {{dataelement['totalDeaths']}}
+  <div class="piechart">
+    <canvas style = "height: 500px; width:auto" class="basechart" baseChart [data]="pieChartData" [labels]="pieChartLabels"
+      [chartType]="pieChartType"></canvas>
   </div>
+</div>
+<div class = "newssection">
+  <div *ngFor = "let news of newsArticle">
+    <div class = "newsItem">
+      <div>
+      {{news.name}}
+      </div>
+      <div>
+        <a class = "readmore" (click) = "openNews(news.url)"> Read more</a>
+        </div>
+      </div>
   </div>
 </div>
 </div>
-<div>
-<div class = "graphHeading">
-  Per Day Cases of last month
-</div>
-<div echarts [options]="chartOption" class="demo-chart"> </div>
-</div>
-<div>
-  <div class = "graphHeading">
-    Per Day Recovery of last month
-  </div>
-  <div echarts [options]="RecoveryChart" class="recovery-chart"> </div>
-  </div>
-  <div class = "piechart">
-    <canvas class = "basechart" baseChart
-            [data]="pieChartData"
-            [labels]="pieChartLabels"
-            [chartType]="pieChartType"></canvas>
-  </div>
-</div>
-  

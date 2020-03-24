@@ -20,6 +20,7 @@ export class AppComponent  implements OnInit, AfterViewInit{
   public pieChartLabels = ['Under Treatment', 'Total Recovered', 'Total Death'];
   public pieChartData = [0,0,0];
   public pieChartType = 'pie';
+  newsArticle: any;
   constructor(public appService:AppService) {
 
   }
@@ -56,6 +57,7 @@ export class AppComponent  implements OnInit, AfterViewInit{
           }
        });
   })
+  this.getNews()
 }
 getHistoricalData() {
   this.appService.getHistoricalData().subscribe(
@@ -115,5 +117,17 @@ setconfirmChart() {
       type: 'line'
     }]
   }
+  }
+  getNews() {
+    this.appService.getNewsarticle().subscribe((data, err) => {
+       if(err) {
+         console.log(err)
+       } else {
+         this.newsArticle = data
+       }
+    })
+  }
+  openNews(url : any) {
+    window.open(url, "_blank");
   }
 }
