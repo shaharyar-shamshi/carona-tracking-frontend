@@ -77,4 +77,10 @@
 	  color: blue;
 	  cursor: pointer;
   }
-  
+  .livedata {
+	border: none;
+    position: fixed;
+    display: flex;
+    justify-content: flex-start;
+    left: -82px;
+  }
