@@ -1,3 +1,12 @@
+@media screen and (max-width: 768px) {
+	.mainDiv {
+	flex-direction: column !important;
+	}
+	.chartjs-render-monitor {
+		height: none !important;
+		width: none !important;
+	}
+}
 .mainDiv {
 	display:flex;
 	flex-wrap:wrap;
@@ -34,13 +43,9 @@
 	  display: flex;
 	  justify-content: center;
   }
-  .basechart {
-	  height:500px !important;
-	  width: auto !important;
-	  display: flex !important;
-  }
-  @media screen and (max-width: 768px) {
-	  .mainDiv {
-	  flex-direction: column !important;
-	  }
-  }
+//   .basechart {
+// 	  height:500px !important;
+// 	  width: auto !important;
+// 	  display: flex !important;
+//   }
+  
