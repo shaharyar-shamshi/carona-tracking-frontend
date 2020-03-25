@@ -66,10 +66,9 @@ getHistoricalData() {
         console.log("some error occurred")
         return
       }
-      let confirmedList = data.locations[0].timelines.confirmed.timeline
+      let confirmedList = data.cases
       this.confirmedList = confirmedList
-      this.deathlist = data.locations[0].timelines.deaths.timeline
-      this.recoverylist = data.locations[0].timelines.recovered.timeline
+      this.deathlist = data.deaths
       this.setconfirmChart()
     }
   )
@@ -84,10 +83,10 @@ setconfirmChart() {
     horizontalAxisTotalCases.push(date.getUTCDate() + "/" + (Number(date.getMonth()) + 1))
     verticalAxisTotalCases.push(this.confirmedList[data])
   }
-  for ( let data in this.recoverylist) {
+  for ( let data in this.deathlist) {
     let date = new Date(data)
     horizontalAxisRecoveryCases.push(date.getUTCDate() + "/" + (Number(date.getMonth()) + 1))
-    verticalAxisRecoveryCases.push(this.recoverylist[data])
+    verticalAxisRecoveryCases.push(this.deathlist[data])
   }
   
 
