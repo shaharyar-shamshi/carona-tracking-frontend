@@ -130,4 +130,7 @@ setconfirmChart() {
   openNews(url : any) {
     window.open(url, "_blank");
   }
+  openDonationpage(): any {
+    window.open("https://www.feedingindia.org/donate", "_blank" )
+  }
 }

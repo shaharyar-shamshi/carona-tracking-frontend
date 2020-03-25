@@ -1,3 +1,8 @@
+<div class = "topbar">
+  <button (click) = "openDonationpage();" class = "donate">
+    Donate for daily wage Earner
+  </button>
+</div>
 <iframe class = "livedata" src="https://feeds.intoday.in/common/widgets/cube/corona/?utm_sources=IT&utm_medium=web">
 
 </iframe>
@@ -16,7 +21,7 @@
           Total Recovered: {{dataelement['totalRecovered']}}
         </div>
         <div class="totalDeath dataelement">
-          Total Deaths: {{dataelement['totalDeaths']}}
+          Total Deaths: {{dataelement['totalDeaths'] ? dataelement['totalDeaths']: 0}}
         </div>
       </div>
     </div>

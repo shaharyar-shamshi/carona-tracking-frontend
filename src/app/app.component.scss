@@ -84,3 +84,15 @@
     justify-content: flex-start;
     left: -82px;
   }
+  .topbar {
+   display: flex;
+  justify-content: center;
+  height: 27px;
+  }
+  .donate {
+	border: 1px solid;
+    outline: none;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: cadetblue;
+  }
