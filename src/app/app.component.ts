@@ -40,13 +40,13 @@ export class AppComponent  implements OnInit, AfterViewInit{
         console.log("Some error occured");
         return;
       }
-       data.forEach(element => {
-          if (element.id === 'india') {
-            this.data = element.areas
-            //this.data = [...data]
+            this.data = data
+            //this.data = [...data]]
+            console.log(this.data)
             this.data.sort(function(a, b) {
               return b.totalConfirmed - a.totalConfirmed;
           });
+          
           for (let value of this.data) {
               this.totalConfirmed = this.totalConfirmed + value.totalConfirmed;
               this.totalDeath = this.totalDeath + value.totalDeaths;
@@ -54,8 +54,6 @@ export class AppComponent  implements OnInit, AfterViewInit{
           }
           this.pieChartData = [this.totalConfirmed - this.totalRecovered - this.totalDeath, this.totalRecovered, this.totalDeath]
           this.pieChartData = [... this.pieChartData]
-          }
-       });
   })
   this.getNews()
 }

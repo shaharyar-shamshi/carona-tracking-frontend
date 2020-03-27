@@ -18,10 +18,13 @@
           Total Confirmed: {{dataelement['totalConfirmed']}}
         </div>
         <div class="totalRecovered dataelement">
-          Total Recovered: {{dataelement['totalRecovered']}}
+          Total Recovered: {{dataelement['totalRecovered'] ? dataelement['totalRecovered']: 0}}
         </div>
         <div class="totalDeath dataelement">
           Total Deaths: {{dataelement['totalDeaths'] ? dataelement['totalDeaths']: 0}}
+        </div>
+        <div class="totalDeath dataelement">
+          Helpline Number: {{dataelement['contact'] ? dataelement['contact']: 0}}
         </div>
       </div>
     </div>
