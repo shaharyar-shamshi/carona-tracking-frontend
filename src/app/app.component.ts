@@ -9,6 +9,7 @@ import { AppService } from './services/app.service'
 export class AppComponent  implements OnInit, AfterViewInit{
 
   public data = new Array();
+  variablefortest: any;
   confirmedList: any;
   recoverylist: any;
   deathlist: any;
